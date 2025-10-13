@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://crt30goulusnf"]
+
+[ext_resource type="Texture2D" uid="uid://db5wckyj30rw6" path="res://characters/loot/loot_sheet.png" id="1_3c463"]
+[ext_resource type="Script" uid="uid://djyh4g1owy2s7" path="res://characters/loot/health_pack.gd" id="1_edrpd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edrpd"]
+
+[node name="HealthPack" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_edrpd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_edrpd")
+
+[node name="LootSheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_3c463")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

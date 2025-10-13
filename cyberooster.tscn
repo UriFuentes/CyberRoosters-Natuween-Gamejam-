@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbniwcw1ot0ps"]
+
+[ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
+[ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://characters/player.tscn" id="1_tx5xb"]
+[ext_resource type="Texture2D" uid="uid://dj3b2bamv2br1" path="res://other/bkg_grid.png" id="2_kmddx"]
+[ext_resource type="Shader" uid="uid://bbhlwjs20eefw" path="res://bkg.gdshader" id="2_oxwii"]
+[ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="3_kmddx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
+shader = ExtResource("2_oxwii")
+
+[sub_resource type="Curve2D" id="Curve2D_lg8w0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -56, -36, 0, 0, 0, 0, 117.42077, -34.32325, 0, 0, 0, 0, 677, -37, 0, 0, 0, 0, 680, 361, 0, 0, 0, 0, -54, 362, 0, 0, 0, 0, -56, -36)
+}
+point_count = 6
+
+[sub_resource type="Environment" id="Environment_8x83q"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 4.52
+glow_blend_mode = 1
+glow_hdr_threshold = 0.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_8x83q")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+visible = false
+material = SubResource("ShaderMaterial_pfh8x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kmddx")
+stretch_mode = 1
+
+[node name="PlayerInfo" type="CanvasLayer" parent="."]
+
+[node name="PlayerXP" type="Label" parent="PlayerInfo"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
+offset_right = -10.0
+offset_bottom = 43.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("3_kmddx")
+text = "print(XP)
+  > 0"
+
+[node name="CurrentLevel" type="Label" parent="PlayerInfo"]
+unique_name_in_owner = true
+offset_left = 9.0
+offset_right = 115.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("3_kmddx")
+text = "print(level) 
+  > 0"
+
+[node name="ElapsedTime" type="Label" parent="PlayerInfo"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("3_kmddx")
+
+[node name="Player" parent="." instance=ExtResource("1_tx5xb")]
+unique_name_in_owner = true
+position = Vector2(320, 160)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-309, -162)
+curve = SubResource("Curve2D_lg8w0")
+
+[node name="SpawnPath" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-56, -36)
+rotation = 0.00966838
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[node name="ElapsedTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="GlobalGlow" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8x83q")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="ElapsedTimer" to="." method="_on_elapsed_timer_timeout"]

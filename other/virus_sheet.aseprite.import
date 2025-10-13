@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b7glsdxjix44p"
+path="res://.godot/imported/virus_sheet.aseprite-6866fcffdc714b81ac5db1c03ec6328e.res"
+
+[deps]
+
+source_file="res://other/virus_sheet.aseprite"
+dest_files=["res://.godot/imported/virus_sheet.aseprite-6866fcffdc714b81ac5db1c03ec6328e.res"]
+
+[params]
+

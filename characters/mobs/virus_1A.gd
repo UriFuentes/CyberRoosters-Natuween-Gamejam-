@@ -1,0 +1,33 @@
+extends CharacterBody2D
+
+
+var health = 3.0
+const DAMAGE_OUTPUT = 10.0
+var speed = 100
+
+@onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
+
+func _physics_process(delta: float) -> void:
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * speed
+	move_and_slide()
+	
+func take_damage(x):
+	health -= x
+	if health <= 0:
+		queue_free()
+		drop_loot()
+	
+func drop_loot():
+	# Create random loot drop
+	var drop_num = randi_range(1, 10)
+	var new_drop 
+		
+	if drop_num <= 9: # 90% chance to drop XP
+		new_drop = preload("res://characters/loot/xp_point.tscn").instantiate()
+	else: # 10% chance to drop Health
+		new_drop = preload("res://characters/loot/health_pack.tscn").instantiate()
+		
+	new_drop.global_position = global_position
+	add_sibling(new_drop)	
+	
