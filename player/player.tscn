@@ -52,8 +52,4 @@ show_percentage = false
 
 [node name="Pistol" parent="." instance=ExtResource("3_tory2")]
 
-[node name="LevelUpScreen" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[connection signal="level_up" from="." to="." method="_on_level_up"]
+[connection signal="level_up" from="." to="." method="_on_player_level_up"]

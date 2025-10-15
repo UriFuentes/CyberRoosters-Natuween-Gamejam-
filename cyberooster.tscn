@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbniwcw1ot0ps"]
+[gd_scene load_steps=10 format=3 uid="uid://bbniwcw1ot0ps"]
 
 [ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
-[ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://characters/player.tscn" id="1_tx5xb"]
+[ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://player/player.tscn" id="1_tx5xb"]
 [ext_resource type="Texture2D" uid="uid://dj3b2bamv2br1" path="res://other/bkg_grid.png" id="2_kmddx"]
 [ext_resource type="Shader" uid="uid://bbhlwjs20eefw" path="res://bkg.gdshader" id="2_oxwii"]
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="3_kmddx"]
+[ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
+[ext_resource type="Texture2D" uid="uid://draqpn80tq866" path="res://util/leveling_system/levelup_screen_sheet.png" id="7_ohav6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
 shader = ExtResource("2_oxwii")
@@ -14,13 +16,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -56, -36, 0, 0, 0, 0, 117.42077, -34.32325, 0, 0, 0, 0, 677, -37, 0, 0, 0, 0, 680, 361, 0, 0, 0, 0, -54, 362, 0, 0, 0, 0, -56, -36)
 }
 point_count = 6
-
-[sub_resource type="Environment" id="Environment_8x83q"]
-background_mode = 3
-glow_enabled = true
-glow_intensity = 4.52
-glow_blend_mode = 1
-glow_hdr_threshold = 0.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_8x83q")
@@ -85,9 +80,29 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
 theme_override_fonts/font = ExtResource("3_kmddx")
 
+[node name="LevelUp" type="CanvasLayer" parent="."]
+follow_viewport_scale = 1.17
+
 [node name="Player" parent="." instance=ExtResource("1_tx5xb")]
 unique_name_in_owner = true
 position = Vector2(320, 160)
+
+[node name="LevelUpBkg" type="TextureRect" parent="Player"]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -128.0
+offset_right = 256.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ohav6")
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-309, -162)
@@ -109,7 +124,7 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="GlobalGlow" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8x83q")
+environment = ExtResource("6_pfh8x")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="ElapsedTimer" to="." method="_on_elapsed_timer_timeout"]

@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 signal health_depleted
@@ -6,10 +7,10 @@ signal level_up
 var health = 100.0
 var max_health = 100.0
 var speed = 150
-var xp = 0
-var next_level_xp = 20
 
-var upgrades : Array[BaseBulletStrategy]
+var xp = 0
+var next_level_xp = 1
+var upgrades : Array[BaseBulletStrategy] # Holds Bullet strategy upgrades
 
 @onready var infolabel = %PlayerXP
 
@@ -30,10 +31,10 @@ func _physics_process(delta: float) -> void:
 				
 	# Leveling Up
 	if xp >= next_level_xp:
-		level_up.emit()
+		level_up.emit() # Signal to level_system.gd
 	
 
-# Writing a function like this for players, since different enemies have different damage
+###### Damage Types ######
 func take_damage_over_time(dmg):
 	health -= dmg * get_physics_process_delta_time() 
 	%HealthBar.value = health
@@ -46,6 +47,7 @@ func take_damage_instant(dmg):
 	if health <= 0.0:
 			health_depleted.emit()
 
+###### Lootables ######
 func gain_xp(x):
 	xp += x
 	%PlayerXP.set_text("Print(XP)\n  > " + str(xp))
@@ -53,11 +55,13 @@ func gain_xp(x):
 func gain_health(x):
 	health = clamp(health + x, 0, max_health)
 	%HealthBar.value = health
+	
+	
 
-func _on_level_up() -> void:
+
+func _on_player_level_up() -> void:
 	get_tree().paused = true
-	%LevelUpScreen.visible = true
+	%LevelUpBkg.visible = true
 	
 func add_upgrade(upgrade) -> void:
 	upgrades.append(upgrade)
-	
