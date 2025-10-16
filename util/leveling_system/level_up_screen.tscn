@@ -23,7 +23,6 @@ script = ExtResource("8_jg5a1")
 metadata/_custom_type_script = "uid://bm1tdohx1mayt"
 
 [node name="LevelUpScreen" type="Node2D"]
-visible = false
 script = ExtResource("1_g55x7")
 
 [node name="LevelUpBkg" type="Sprite2D" parent="."]
@@ -31,15 +30,15 @@ texture = ExtResource("1_5w567")
 
 [node name="Upgrade1" parent="." instance=ExtResource("2_g55x7")]
 unique_name_in_owner = true
-position = Vector2(-164, -57)
+position = Vector2(-164, -47)
 bullet_strategy = SubResource("Resource_pe1tt")
 
 [node name="Upgrade2" parent="." instance=ExtResource("2_g55x7")]
 unique_name_in_owner = true
-position = Vector2(0, -60)
+position = Vector2(0, -50)
 bullet_strategy = SubResource("Resource_c86tw")
 
 [node name="Upgrade3" parent="." instance=ExtResource("2_g55x7")]
 unique_name_in_owner = true
-position = Vector2(165, -60)
+position = Vector2(165, -50)
 bullet_strategy = SubResource("Resource_4p7co")

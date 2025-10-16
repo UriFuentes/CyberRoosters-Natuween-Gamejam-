@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuty7hkntuw5e"]
+[gd_scene load_steps=8 format=3 uid="uid://cuty7hkntuw5e"]
 
 [ext_resource type="Script" uid="uid://v2ah4sw7qhc" path="res://util/leveling_system/upgrade.gd" id="1_1beqx"]
 [ext_resource type="Script" uid="uid://vsocjiycaean" path="res://util/bullet_strategy/bounce_bullet_strat.gd" id="2_di6vi"]
 [ext_resource type="Texture2D" uid="uid://c2rcco0uynkov" path="res://util/leveling_system/upgrade_sprites/bounce_upgrade.png" id="3_di6vi"]
+[ext_resource type="Texture2D" uid="uid://c24p17osm5yk" path="res://util/leveling_system/upgrade_sprites/damage_upgrade.png" id="4_3lyng"]
+[ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="4_ekgfa"]
 
 [sub_resource type="Resource" id="Resource_di6vi"]
 script = ExtResource("2_di6vi")
 metadata/_custom_type_script = "uid://vsocjiycaean"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3lyng"]
-radius = 14.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lyng"]
+size = Vector2(112, 176)
 
 [node name="Upgrade" type="Area2D" node_paths=PackedStringArray("upgrade_label", "sprite")]
 script = ExtResource("1_1beqx")
@@ -18,10 +20,18 @@ sprite = NodePath("Sprite2D")
 bullet_strategy = SubResource("Resource_di6vi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_3lyng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3lyng")
+position = Vector2(0, 48)
+shape = SubResource("RectangleShape2D_3lyng")
 
 [node name="UpgradeLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -31.0
+offset_top = -40.0
+offset_right = 31.0
+offset_bottom = -17.0
+theme_override_fonts/font = ExtResource("4_ekgfa")
+text = "Damage"
+horizontal_alignment = 1
+vertical_alignment = 1

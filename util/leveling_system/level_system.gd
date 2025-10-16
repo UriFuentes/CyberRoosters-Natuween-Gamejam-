@@ -31,6 +31,7 @@ func _on_player_level_up() -> void:
 				
 		upgrade_selection.append(upgrade)
 	
+	# Assign upgrades to upgrade nodes
 	var i := 0
 	for node in get_children():
 		if node is not Area2D:

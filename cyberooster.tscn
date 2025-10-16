@@ -89,6 +89,8 @@ position = Vector2(320, 160)
 
 [node name="LevelUpScreen" parent="Player" instance=ExtResource("6_ohav6")]
 unique_name_in_owner = true
+visible = false
+z_index = 2
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-309, -162)
