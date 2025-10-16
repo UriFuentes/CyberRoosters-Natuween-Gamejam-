@@ -24,9 +24,9 @@ func drop_loot():
 	var new_drop 
 		
 	if drop_num <= 9: # 90% chance to drop XP
-		new_drop = preload("res://characters/loot/xp_point.tscn").instantiate()
+		new_drop = preload("res://objects/loot/xp_point.tscn").instantiate()
 	else: # 10% chance to drop Health
-		new_drop = preload("res://characters/loot/health_pack.tscn").instantiate()
+		new_drop = preload("res://objects/loot/health_pack.tscn").instantiate()
 		
 	new_drop.global_position = global_position
 	add_sibling(new_drop)	
