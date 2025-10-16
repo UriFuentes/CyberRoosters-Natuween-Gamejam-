@@ -55,13 +55,6 @@ func gain_xp(x):
 func gain_health(x):
 	health = clamp(health + x, 0, max_health)
 	%HealthBar.value = health
-	
-	
 
-
-func _on_player_level_up() -> void:
-	get_tree().paused = true
-	%LevelUpBkg.visible = true
-	
 func add_upgrade(upgrade) -> void:
 	upgrades.append(upgrade)

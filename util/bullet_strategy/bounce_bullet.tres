@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BounceBulletStrategy" load_steps=3 format=3 uid="uid://cscwv06di678c"]
+
+[ext_resource type="Script" uid="uid://vsocjiycaean" path="res://util/bullet_strategy/bounce_bullet_strat.gd" id="1_oiixq"]
+[ext_resource type="Texture2D" uid="uid://c2rcco0uynkov" path="res://util/leveling_system/upgrade_sprites/bounce_upgrade.png" id="2_ehrmf"]
+
+[resource]
+script = ExtResource("1_oiixq")
+metadata/_custom_type_script = "uid://vsocjiycaean"

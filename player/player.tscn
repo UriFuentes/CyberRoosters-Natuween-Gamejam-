@@ -51,5 +51,3 @@ value = 100.0
 show_percentage = false
 
 [node name="Pistol" parent="." instance=ExtResource("3_tory2")]
-
-[connection signal="level_up" from="." to="." method="_on_player_level_up"]

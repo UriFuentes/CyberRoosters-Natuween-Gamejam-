@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dj3b2bamv2br1" path="res://other/bkg_grid.png" id="2_kmddx"]
 [ext_resource type="Shader" uid="uid://bbhlwjs20eefw" path="res://bkg.gdshader" id="2_oxwii"]
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="3_kmddx"]
+[ext_resource type="PackedScene" uid="uid://pxvdt4retwqp" path="res://util/leveling_system/level_up_screen.tscn" id="6_ohav6"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
-[ext_resource type="Texture2D" uid="uid://draqpn80tq866" path="res://util/leveling_system/levelup_screen_sheet.png" id="7_ohav6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
 shader = ExtResource("2_oxwii")
@@ -87,22 +87,8 @@ follow_viewport_scale = 1.17
 unique_name_in_owner = true
 position = Vector2(320, 160)
 
-[node name="LevelUpBkg" type="TextureRect" parent="Player"]
+[node name="LevelUpScreen" parent="Player" instance=ExtResource("6_ohav6")]
 unique_name_in_owner = true
-visible = false
-z_index = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -128.0
-offset_right = 256.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_ohav6")
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-309, -162)
@@ -126,5 +112,6 @@ autostart = true
 [node name="GlobalGlow" type="WorldEnvironment" parent="."]
 environment = ExtResource("6_pfh8x")
 
+[connection signal="level_up" from="Player" to="Player/LevelUpScreen" method="_on_player_level_up"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="ElapsedTimer" to="." method="_on_elapsed_timer_timeout"]

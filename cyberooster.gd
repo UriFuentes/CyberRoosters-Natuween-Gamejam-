@@ -29,7 +29,6 @@ func _on_elapsed_timer_timeout() -> void:
 	var formatted_time = convert_time_MMSS(int(round(current_time - start_time)))
 	%ElapsedTime.set_text(formatted_time)
 
-
 #func _on_player_health_depleted() -> void:
 	#%GameOver.visible = true
 	#get_tree().paused = true

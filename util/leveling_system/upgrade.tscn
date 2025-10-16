@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuty7hkntuw5e"]
+
+[ext_resource type="Script" uid="uid://v2ah4sw7qhc" path="res://util/leveling_system/upgrade.gd" id="1_1beqx"]
+[ext_resource type="Script" uid="uid://vsocjiycaean" path="res://util/bullet_strategy/bounce_bullet_strat.gd" id="2_di6vi"]
+[ext_resource type="Texture2D" uid="uid://c2rcco0uynkov" path="res://util/leveling_system/upgrade_sprites/bounce_upgrade.png" id="3_di6vi"]
+
+[sub_resource type="Resource" id="Resource_di6vi"]
+script = ExtResource("2_di6vi")
+metadata/_custom_type_script = "uid://vsocjiycaean"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lyng"]
+radius = 14.0
+
+[node name="Upgrade" type="Area2D" node_paths=PackedStringArray("upgrade_label", "sprite")]
+script = ExtResource("1_1beqx")
+upgrade_label = NodePath("UpgradeLabel")
+sprite = NodePath("Sprite2D")
+bullet_strategy = SubResource("Resource_di6vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3lyng")
+
+[node name="UpgradeLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
