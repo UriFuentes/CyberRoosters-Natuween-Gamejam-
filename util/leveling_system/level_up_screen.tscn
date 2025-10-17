@@ -30,7 +30,7 @@ texture = ExtResource("1_5w567")
 
 [node name="Upgrade1" parent="." instance=ExtResource("2_g55x7")]
 unique_name_in_owner = true
-position = Vector2(-164, -47)
+position = Vector2(-163, -50)
 bullet_strategy = SubResource("Resource_pe1tt")
 
 [node name="Upgrade2" parent="." instance=ExtResource("2_g55x7")]
@@ -40,5 +40,9 @@ bullet_strategy = SubResource("Resource_c86tw")
 
 [node name="Upgrade3" parent="." instance=ExtResource("2_g55x7")]
 unique_name_in_owner = true
-position = Vector2(165, -50)
+position = Vector2(164, -50)
 bullet_strategy = SubResource("Resource_4p7co")
+
+[connection signal="upgrade_selected" from="Upgrade1" to="." method="_on_upgrade_1_selected"]
+[connection signal="upgrade_selected" from="Upgrade2" to="." method="_on_upgrade_2_selected"]
+[connection signal="upgrade_selected" from="Upgrade3" to="." method="_on_upgrade_3_selected"]

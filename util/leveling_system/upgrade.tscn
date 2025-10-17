@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cuty7hkntuw5e"]
+[gd_scene load_steps=9 format=3 uid="uid://cuty7hkntuw5e"]
 
 [ext_resource type="Script" uid="uid://v2ah4sw7qhc" path="res://util/leveling_system/upgrade.gd" id="1_1beqx"]
 [ext_resource type="Script" uid="uid://vsocjiycaean" path="res://util/bullet_strategy/bounce_bullet_strat.gd" id="2_di6vi"]
 [ext_resource type="Texture2D" uid="uid://c2rcco0uynkov" path="res://util/leveling_system/upgrade_sprites/bounce_upgrade.png" id="3_di6vi"]
 [ext_resource type="Texture2D" uid="uid://c24p17osm5yk" path="res://util/leveling_system/upgrade_sprites/damage_upgrade.png" id="4_3lyng"]
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="4_ekgfa"]
+[ext_resource type="Texture2D" uid="uid://kkhlrarjryg6" path="res://util/leveling_system/button.png" id="6_a24d0"]
 
 [sub_resource type="Resource" id="Resource_di6vi"]
 script = ExtResource("2_di6vi")
@@ -47,3 +48,18 @@ theme_override_font_sizes/normal_font_size = 8
 text = "Bullet Damage ++"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SelectButton" type="Button" parent="."]
+process_mode = 3
+offset_left = -48.0
+offset_top = 28.0
+offset_right = 49.058823
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("4_ekgfa")
+text = "SELECT"
+icon = ExtResource("6_a24d0")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]

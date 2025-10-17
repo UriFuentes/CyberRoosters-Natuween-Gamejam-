@@ -9,7 +9,9 @@ var max_health = 100.0
 var speed = 150
 
 var xp = 0
-var next_level_xp = 1
+var next_level_xp = [1,5,10] # TESTING VALUES
+var level_index = 0
+
 var upgrades : Array[BaseBulletStrategy] # Holds Bullet strategy upgrades
 
 @onready var infolabel = %PlayerXP
@@ -30,8 +32,10 @@ func _physics_process(delta: float) -> void:
 				health_depleted.emit()
 				
 	# Leveling Up
-	if xp >= next_level_xp:
+	if xp >= next_level_xp[level_index]:
 		level_up.emit() # Signal to level_system.gd
+		if level_index + 1 != 3:
+			level_index += 1
 	
 
 ###### Damage Types ######
