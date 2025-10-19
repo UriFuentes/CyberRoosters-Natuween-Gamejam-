@@ -7,4 +7,4 @@ extends BaseBulletStrategy
 @export var bounce_increase := 1
 
 func apply_upgrade(bullet:Bullet):
-	bullet.bounce += bounce_increase
+	bullet.max_bounce += bounce_increase

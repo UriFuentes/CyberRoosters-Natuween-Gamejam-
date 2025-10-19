@@ -7,4 +7,4 @@ extends BaseBulletStrategy
 @export var pierce_increase := 1
 
 func apply_upgrade(bullet:Bullet):
-	bullet.pierce += pierce_increase
+	bullet.max_pierce += pierce_increase

@@ -3,16 +3,16 @@ extends Area2D
 
 # Strategy-Modifyable Variables
 var damage = 1.0
-var speed = 0
-var pierce = 0
-var bounce = 0
+var speed = 100
+var max_pierce = 0
+var max_bounce = 0
 
 var range = 0
 var travelled_distance = 0
+var bodies_pierced = 0
 var secret_ability = false # (rm -r ./)
 
 func _physics_process(delta: float) -> void:
-	speed = 100
 	range = 300
 	
 	# Area nodes dont have move and slide, instead they need to be moved with postion or global_position
@@ -26,6 +26,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	queue_free() # Deletes node, but waits one frame to do so
+	bodies_pierced += 1
+	if bodies_pierced > max_pierce:
+		queue_free() # Deletes node, but waits one frame to do so
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
