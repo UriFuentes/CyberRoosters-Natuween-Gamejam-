@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MobProjectileStats" load_steps=2 format=3 uid="uid://v0ptalx6o1pa"]
+
+[ext_resource type="Script" uid="uid://fvmrjhi16chv" path="res://objects/mob_objects/MobProjectileStats.gd" id="1_nyoqu"]
+
+[resource]
+script = ExtResource("1_nyoqu")
+direction = "UP"
+metadata/_custom_type_script = "uid://fvmrjhi16chv"

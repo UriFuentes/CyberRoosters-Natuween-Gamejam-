@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://breilajifpmk6"]
+
+[ext_resource type="Script" uid="uid://bs8g24klvkf41" path="res://characters/mobs/virus_1B.gd" id="1_x36n4"]
+[ext_resource type="Texture2D" uid="uid://c2o1pjmfghcky" path="res://characters/mobs/virus_sheet.png" id="1_xoeen"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x36n4"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqdj5"]
+radius = 14.0
+
+[node name="virus_1B" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_x36n4")
+
+[node name="VirusSheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_xoeen")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_x36n4")
+
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_bqdj5")
+
+[node name="SpikeSpawnUP" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -11)
+
+[node name="SpikeSpawnRIGHT" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(10, 0)
+
+[node name="SpikeSpawnDOWN" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 11)
+
+[node name="SpikeSpawnLEFT" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-10, 0)
+
+[node name="SpikeCooldown" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpikeCooldown" to="." method="_on_spike_cooldown_timeout"]

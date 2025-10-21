@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size():
 		for mob in overlapping_mobs:
-			health -= mob.DAMAGE_OUTPUT * delta
+			health -= mob.DAMAGE_OUTPUT_MELEE * delta
 			%HealthBar.value = health
 			if health <= 0.0:
 				health_depleted.emit()

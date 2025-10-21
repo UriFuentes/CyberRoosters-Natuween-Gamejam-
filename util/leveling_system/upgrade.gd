@@ -8,10 +8,6 @@ signal upgrade_selected
 @export var bullet_strategy : BaseBulletStrategy:
 	set(val):
 		bullet_strategy = val
-		needs_update = true
-		
-# Used when editing to denote that the sprite has changed and needs updating
-@export var needs_update := false
 
 func _ready() -> void:
 	sprite.texture = bullet_strategy.texture

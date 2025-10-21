@@ -28,7 +28,15 @@ window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://characters/": "red",
+"res://characters/mobs/": "blue",
+"res://objects/": "yellow"
+}
 
 [input]
 

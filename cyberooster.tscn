@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbniwcw1ot0ps"]
+[gd_scene load_steps=11 format=3 uid="uid://bbniwcw1ot0ps"]
 
 [ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
 [ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://player/player.tscn" id="1_tx5xb"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="3_kmddx"]
 [ext_resource type="PackedScene" uid="uid://pxvdt4retwqp" path="res://util/leveling_system/level_up_screen.tscn" id="6_ohav6"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
+[ext_resource type="PackedScene" uid="uid://breilajifpmk6" path="res://characters/mobs/virus_1B.tscn" id="7_hjjyw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
 shader = ExtResource("2_oxwii")
@@ -102,6 +103,24 @@ position = Vector2(-56, -36)
 rotation = 0.00966838
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="virus_1B" parent="Player" instance=ExtResource("7_hjjyw")]
+position = Vector2(-223, 29)
+
+[node name="virus_1B2" parent="Player" instance=ExtResource("7_hjjyw")]
+position = Vector2(-180, -82)
+
+[node name="virus_1B3" parent="Player" instance=ExtResource("7_hjjyw")]
+position = Vector2(196, 77)
+
+[node name="virus_1B4" parent="Player" instance=ExtResource("7_hjjyw")]
+position = Vector2(179, -54)
+
+[node name="virus_1B5" parent="Player" instance=ExtResource("7_hjjyw")]
+position = Vector2(-186, 113)
+
+[node name="virus_1B6" parent="Player" instance=ExtResource("7_hjjyw")]
+position = Vector2(105, -122)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.7

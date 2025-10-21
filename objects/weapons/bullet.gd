@@ -7,13 +7,12 @@ var speed = 100
 var max_pierce = 0
 var max_bounce = 0
 
-var range = 0
+var range = 300
 var travelled_distance = 0
 var bodies_pierced = 0
 var secret_ability = false # (rm -r ./)
 
 func _physics_process(delta: float) -> void:
-	range = 300
 	
 	# Area nodes dont have move and slide, instead they need to be moved with postion or global_position
 	var direction = Vector2.RIGHT.rotated(rotation)
