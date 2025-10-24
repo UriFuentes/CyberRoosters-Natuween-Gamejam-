@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var health = 4.0
 const DAMAGE_OUTPUT_MELEE = 15.0
-var speed = 150
+var speed = 130
 
 @onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
 
@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
-func take_damage(x):
+func take_damage_instant(x):
 	health -= x
 	if health <= 0:
 		queue_free() # Remove the mob

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://daah82qa4ktve"]
+[gd_scene load_steps=7 format=3 uid="uid://daah82qa4ktve"]
 
 [ext_resource type="Texture2D" uid="uid://c2o1pjmfghcky" path="res://characters/mobs/virus_sheet.png" id="1_dpdic"]
 [ext_resource type="Script" uid="uid://blgkah2lsvjcs" path="res://characters/mobs/virus_1C.gd" id="1_kss0j"]
@@ -8,6 +8,14 @@ radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8wwf7"]
 radius = 14.0
+
+[sub_resource type="Animation" id="Animation_kss0j"]
+resource_name = "virus_1C"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wwf7"]
+_data = {
+&"virus_1C": SubResource("Animation_kss0j")
+}
 
 [node name="virus_1C" type="CharacterBody2D"]
 collision_layer = 2
@@ -33,3 +41,8 @@ shape = SubResource("CircleShape2D_8wwf7")
 
 [node name="ExplosionSpawn" type="Marker2D" parent="."]
 unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8wwf7")
+}

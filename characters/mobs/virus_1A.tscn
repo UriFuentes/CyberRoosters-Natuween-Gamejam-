@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bopt6v0hjanoo"]
+[gd_scene load_steps=8 format=3 uid="uid://bopt6v0hjanoo"]
 
 [ext_resource type="Script" uid="uid://lxffykngxiyj" path="res://characters/mobs/virus_1A.gd" id="1_y5fr5"]
 [ext_resource type="Texture2D" uid="uid://c2o1pjmfghcky" path="res://characters/mobs/virus_sheet.png" id="2_ar3vn"]
@@ -8,6 +8,42 @@ radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ndjc5"]
 radius = 12.0
+
+[sub_resource type="Animation" id="Animation_y5fr5"]
+resource_name = "take_damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VirusSheet:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_ar3vn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VirusSheet:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ar3vn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpitg"]
+_data = {
+&"RESET": SubResource("Animation_ar3vn"),
+&"take_damage": SubResource("Animation_y5fr5")
+}
 
 [node name="virus_1A" type="CharacterBody2D"]
 collision_layer = 2
@@ -30,5 +66,24 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_ndjc5")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xpitg")
+}
+
+[node name="HitParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0.045710087, 1)
+emitting = false
+lifetime = 0.09999999999999999
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 188.41
+initial_velocity_max = 246.38
+
+[connection signal="damage_particles" from="." to="." method="_on_damage_particles"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://beesquds836n0"]
+
+[ext_resource type="Script" uid="uid://cub40po50yyou" path="res://objects/mob_objects/mob_1D_bullet.gd" id="1_ho41h"]
+[ext_resource type="Texture2D" uid="uid://dhlcn8wj0gv0s" path="res://characters/mobs/mob_attacks_sheet.png" id="1_wpdc1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lu330"]
+radius = 4.1231055
+
+[node name="mob_1D_bullet" type="Area2D"]
+top_level = true
+collision_layer = 0
+script = ExtResource("1_ho41h")
+
+[node name="MobAttacksSheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_wpdc1")
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lu330")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

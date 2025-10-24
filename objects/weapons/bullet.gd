@@ -28,5 +28,5 @@ func _on_body_entered(body: Node2D) -> void:
 	bodies_pierced += 1
 	if bodies_pierced > max_pierce:
 		queue_free() # Deletes node, but waits one frame to do so
-	if body.has_method("take_damage"):
-		body.take_damage(damage)
+	if body.has_method("take_damage_instant"):
+		body.take_damage_instant(damage)
