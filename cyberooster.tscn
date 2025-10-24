@@ -104,24 +104,6 @@ rotation = 0.00966838
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="virus_1B" parent="Player" instance=ExtResource("7_hjjyw")]
-position = Vector2(-223, 29)
-
-[node name="virus_1B2" parent="Player" instance=ExtResource("7_hjjyw")]
-position = Vector2(-180, -82)
-
-[node name="virus_1B3" parent="Player" instance=ExtResource("7_hjjyw")]
-position = Vector2(196, 77)
-
-[node name="virus_1B4" parent="Player" instance=ExtResource("7_hjjyw")]
-position = Vector2(179, -54)
-
-[node name="virus_1B5" parent="Player" instance=ExtResource("7_hjjyw")]
-position = Vector2(-186, 113)
-
-[node name="virus_1B6" parent="Player" instance=ExtResource("7_hjjyw")]
-position = Vector2(105, -122)
-
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.7
 autostart = true
@@ -132,6 +114,18 @@ autostart = true
 
 [node name="GlobalGlow" type="WorldEnvironment" parent="."]
 environment = ExtResource("6_pfh8x")
+
+[node name="virus_1B" parent="." instance=ExtResource("7_hjjyw")]
+position = Vector2(231, 197)
+
+[node name="virus_1B2" parent="." instance=ExtResource("7_hjjyw")]
+position = Vector2(148, 103)
+
+[node name="virus_1B3" parent="." instance=ExtResource("7_hjjyw")]
+position = Vector2(454, 96)
+
+[node name="virus_1B4" parent="." instance=ExtResource("7_hjjyw")]
+position = Vector2(441, 222)
 
 [connection signal="level_up" from="Player" to="Player/LevelUpScreen" method="_on_player_level_up"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

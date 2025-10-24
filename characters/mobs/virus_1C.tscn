@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://daah82qa4ktve"]
+
+[node name="virus_1C" type="CharacterBody2D"]
