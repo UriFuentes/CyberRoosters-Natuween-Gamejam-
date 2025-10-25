@@ -11,7 +11,6 @@ var speed = 80
 @onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
 @onready var HitParticles = %HitParticles
 
-
 func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * speed

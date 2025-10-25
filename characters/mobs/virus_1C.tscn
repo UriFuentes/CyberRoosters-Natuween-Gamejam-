@@ -51,6 +51,7 @@ libraries = {
 unique_name_in_owner = true
 modulate = Color(1, 0, 0.045710087, 1)
 emitting = false
+amount = 10
 lifetime = 0.1
 one_shot = true
 emission_shape = 1

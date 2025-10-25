@@ -61,14 +61,14 @@ theme_override_fonts/font = ExtResource("3_kmddx")
 text = "print(XP)
   > 0"
 
-[node name="CurrentLevel" type="Label" parent="PlayerInfo"]
+[node name="CurrentStage" type="Label" parent="PlayerInfo"]
 unique_name_in_owner = true
 offset_left = 9.0
 offset_right = 115.0
 offset_bottom = 43.0
 theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
 theme_override_fonts/font = ExtResource("3_kmddx")
-text = "print(level) 
+text = "print(stage) 
   > 0"
 
 [node name="ElapsedTime" type="Label" parent="PlayerInfo"]
@@ -107,7 +107,11 @@ rotation = 0.00966838
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.7
+autostart = true
+
+[node name="SpawnIncrement" type="Timer" parent="."]
 autostart = true
 
 [node name="ElapsedTimer" type="Timer" parent="."]
@@ -128,4 +132,5 @@ position = Vector2(450, 236)
 
 [connection signal="level_up" from="Player" to="Player/LevelUpScreen" method="_on_player_level_up"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnIncrement" to="." method="_on_spawn_increment_timeout"]
 [connection signal="timeout" from="ElapsedTimer" to="." method="_on_elapsed_timer_timeout"]

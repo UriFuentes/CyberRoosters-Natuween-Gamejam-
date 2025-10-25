@@ -21,6 +21,12 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
+	# Animation
+	if velocity.length() > 0:
+		%PlayerAnimation.play("player_walk")
+	else:
+		%PlayerAnimation.play("player_idle")
+	
 	# Melee Damage
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size():
