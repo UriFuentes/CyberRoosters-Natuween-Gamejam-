@@ -7,28 +7,35 @@ var minutes = 0
 
 func _ready() -> void:
 	start_time  = Time.get_unix_time_from_system()
-	
-#func _process(delta: float) -> void:
-	#current_time = Time.get_unix_time_from_system()
-	#%ElapsedTime.set_text(current_time - start_time)
 
 func spawn_mob():
 	var new_mob
+	var r = randi_range(1,10)
 	if minutes <= 1:
 		new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
 	elif minutes <= 2:
-		var r = randi_range(1,10)
 		if r <= 7:
 			new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
 		else:
 			new_mob = preload("res://characters/mobs/virus_1B.tscn").instantiate()
 	elif minutes <= 4:
-		var r = randi_range(1,10)
-		if r <= 5:
+		if r <= 4:
 			new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
-		else:
+		elif r <= 8:
 			new_mob = preload("res://characters/mobs/virus_1B.tscn").instantiate()
-	
+		else:
+			new_mob = preload("res://characters/mobs/virus_1C.tscn").instantiate()
+	elif minutes <= 6:
+		if r <= 3:
+			new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
+		elif r <= 5:
+			new_mob = preload("res://characters/mobs/virus_1B.tscn").instantiate()
+		elif r <= 7:
+			new_mob = preload("res://characters/mobs/virus_1C.tscn").instantiate()
+		else:
+			new_mob = preload("res://characters/mobs/virus_1D.tscn").instantiate()
+			
+
 	%SpawnPath.progress_ratio = randf()
 	new_mob.global_position = %SpawnPath.global_position
 	add_child(new_mob)
@@ -47,8 +54,7 @@ func _on_elapsed_timer_timeout() -> void:
 	%ElapsedTime.set_text(formatted_time)
 
 func _on_spawn_increment_timeout() -> void:
-	%SpawnTimer.wait_time = clamp(%SpawnTimer.wait_time - 0.1, 0.1, 1)
-	
+	%SpawnTimer.wait_time = clamp(%SpawnTimer.wait_time - 0.5, 0.5, 1)
 	
 #func _on_player_health_depleted() -> void:
 	#%GameOver.visible = true
