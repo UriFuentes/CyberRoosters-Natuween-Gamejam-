@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbniwcw1ot0ps"]
+[gd_scene load_steps=13 format=3 uid="uid://bbniwcw1ot0ps"]
 
 [ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
 [ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://player/player.tscn" id="1_tx5xb"]
@@ -7,6 +7,9 @@
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="3_kmddx"]
 [ext_resource type="PackedScene" uid="uid://pxvdt4retwqp" path="res://util/leveling_system/level_up_screen.tscn" id="6_ohav6"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
+[ext_resource type="PackedScene" uid="uid://breilajifpmk6" path="res://characters/mobs/virus_1B.tscn" id="8_sq21o"]
+[ext_resource type="PackedScene" uid="uid://daah82qa4ktve" path="res://characters/mobs/virus_1C.tscn" id="9_46xs7"]
+[ext_resource type="PackedScene" uid="uid://c4c7aypts1s30" path="res://characters/mobs/virus_1D.tscn" id="10_os4vh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
 shader = ExtResource("2_oxwii")
@@ -113,6 +116,15 @@ autostart = true
 
 [node name="GlobalGlow" type="WorldEnvironment" parent="."]
 environment = ExtResource("6_pfh8x")
+
+[node name="virus_1B" parent="." instance=ExtResource("8_sq21o")]
+position = Vector2(161, 217)
+
+[node name="virus_1C" parent="." instance=ExtResource("9_46xs7")]
+position = Vector2(296, 260)
+
+[node name="virus_1D" parent="." instance=ExtResource("10_os4vh")]
+position = Vector2(450, 236)
 
 [connection signal="level_up" from="Player" to="Player/LevelUpScreen" method="_on_player_level_up"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
+signal damage_particles
+var particle_direction
 
 var health = 4.0
 const DAMAGE_OUTPUT_MELEE = 15.0
 var speed = 130
 
 @onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
+@onready var HitParticles = %HitParticles
+
 
 func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
@@ -14,6 +18,7 @@ func _physics_process(delta: float) -> void:
 	
 func take_damage_instant(x):
 	health -= x
+	emit_signal("damage_particles")
 	if health <= 0:
 		queue_free() # Remove the mob
 		var new_explosion = preload("res://objects/mob_objects/explosion.tscn").instantiate()
@@ -34,3 +39,7 @@ func drop_loot():
 	new_drop.global_position = global_position
 	add_sibling(new_drop)	
 	
+func _on_damage_particles() -> void:
+	particle_direction = (player.global_position - global_position).normalized()
+	HitParticles.direction = -particle_direction
+	HitParticles.emitting = true

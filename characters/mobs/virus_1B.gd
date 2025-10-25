@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 signal shoot_spikes
+signal damage_particles
+var particle_direction
 
 var health = 3.0
 const DAMAGE_OUTPUT_MELEE = 10.0
@@ -8,6 +10,7 @@ const DAMAGE_OUTPUT_RANGE = 20.0
 var speed = 100
 
 @onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
+@onready var HitParticles = %HitParticles
 
 func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
@@ -16,6 +19,7 @@ func _physics_process(delta: float) -> void:
 	
 func take_damage_instant(x):
 	health -= x
+	emit_signal("damage_particles")
 	if health <= 0:
 		queue_free()
 		drop_loot()
@@ -32,16 +36,11 @@ func drop_loot():
 		
 	new_drop.global_position = global_position
 	add_sibling(new_drop)	
-	
-#func shoot_spikes():
-	#var i = 0
-	#for SpikeSpawn in get_children():
-		#if SpikeSpawn is Marker2D:
-			#var new_spike = SPIKES[i].instantiate()
-			#new_spike.global_position = SpikeSpawn.global_position 
-			#new_spike.global_rotation = SpikeSpawn.global_rotation 
-			#SpikeSpawn.add_child(new_spike)
-			#i += 1
 
 func _on_spike_cooldown_timeout() -> void:
 	emit_signal("shoot_spikes")
+	
+func _on_damage_particles() -> void:
+	particle_direction = (player.global_position - global_position).normalized()
+	HitParticles.direction = -particle_direction
+	HitParticles.emitting = true
