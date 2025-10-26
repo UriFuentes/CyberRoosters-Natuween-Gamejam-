@@ -49,7 +49,7 @@ libraries = {
 
 [node name="HitParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 0, 0.045710087, 1)
+modulate = Color(3.8147569, 0, 0.31935337, 1)
 emitting = false
 amount = 10
 lifetime = 0.1

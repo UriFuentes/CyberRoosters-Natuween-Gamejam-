@@ -36,7 +36,7 @@ shape = SubResource("CircleShape2D_bqdj5")
 
 [node name="HitParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0, 1, 0.6666667, 1)
+modulate = Color(0, 3.2944162, 2.2361488, 1)
 emitting = false
 amount = 10
 lifetime = 0.1

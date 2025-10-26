@@ -1,0 +1,222 @@
+[gd_scene load_steps=12 format=3 uid="uid://dna4ryythsdqg"]
+
+[ext_resource type="Script" uid="uid://bhsm4qp58rba5" path="res://intro_scene.gd" id="1_fqpck"]
+[ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="2_x3ncd"]
+[ext_resource type="Texture2D" uid="uid://cbst5u1ov2js2" path="res://other/pixel_gallo.png" id="3_h7lmj"]
+[ext_resource type="AudioStream" uid="uid://btdjs3r5gmq7s" path="res://audio/typing.wav" id="3_o8unc"]
+[ext_resource type="AudioStream" uid="uid://diux1h5r8e0mx" path="res://audio/starting_beep.wav" id="4_b1u3c"]
+[ext_resource type="AudioStream" uid="uid://b4rauo4f78qvh" path="res://audio/title_screen.wav" id="5_w2ebg"]
+[ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_w2ebg"]
+
+[sub_resource type="Animation" id="Animation_x3ncd"]
+resource_name = "boot_sequence"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BootSequence:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.8000001, 7.1666665, 9, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.795, 0.85, 1.0]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_o8unc")
+}, {
+"end_offset": 3.55,
+"start_offset": 0.10000002,
+"stream": ExtResource("3_o8unc")
+}],
+"times": PackedFloat32Array(1.7666667, 6.226667)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_b1u3c")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_2glrg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BootSequence:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleScreen:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_o8unc"]
+resource_name = "title_screen"
+length = 20.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_w2ebg")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleScreen:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 19.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8unc"]
+_data = {
+&"RESET": SubResource("Animation_2glrg"),
+&"boot_sequence": SubResource("Animation_x3ncd"),
+&"title_screen": SubResource("Animation_o8unc")
+}
+
+[node name="IntroScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fqpck")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BootSequence" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.019607844, 0.69411767, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_x3ncd")
+text = "$ boot_sequence --init
+Initializing system...
+Loading modules: [netlink] [render] [auth] ✓
+System ready.
+
+$ ssh -l user@ada.upr.rp.edu
+Connecting to ada.upr.rp.edu...
+Permission denied (publickey,password).
+
+$ ssh -l user@ada.upr.rp.edu -p 2222
+Connecting to ada.upr.rp.edu:2222...
+Authentication bypassed via fallback protocol.
+Welcome, user.
+
+$ cd /mnt/defense/gallito
+bash: cd: /mnt/defense/gallito: No such file or directory
+
+$ mount /dev/sda3 /mnt/defense
+Mounting fallback volume...
+Volume mounted at /mnt/defense
+
+$ cd /mnt/defense/gallito
+Directory changed.
+
+$ ./gallitodefender.exe
+Launching Gallito Defense Protocol...
+[ █████████████████████████████████ ] 100%
+> gallitodefender.exe successfully initialized.
+> Welcome to the ADA DEFENSE TERMINAL v1.0
+> Press any key to begin...
+"
+scroll_active = false
+scroll_following_visible_characters = true
+
+[node name="TitleScreen" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="TitleText" type="RichTextLabel" parent="TitleScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 200.0
+offset_top = 256.0
+offset_right = 447.0
+offset_bottom = 289.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_x3ncd")
+theme_override_font_sizes/normal_font_size = 24
+text = "Gallito Defender"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PixelGallo" type="Sprite2D" parent="TitleScreen"]
+position = Vector2(320, 152)
+texture = ExtResource("3_h7lmj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="BootAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_o8unc")
+}
+
+[node name="GlobalGlow" type="WorldEnvironment" parent="."]
+environment = ExtResource("6_w2ebg")
+
+[connection signal="animation_finished" from="BootAnimation" to="." method="_on_boot_animation_finished"]

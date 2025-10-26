@@ -2,7 +2,6 @@ extends Node2D
 
 var start_time
 var current_time
-
 var minutes = 0
 
 func _ready() -> void:
