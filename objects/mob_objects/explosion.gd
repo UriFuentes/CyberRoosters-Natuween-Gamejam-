@@ -2,6 +2,9 @@ extends Area2D
 
 var damage = 50.0
 
+func _ready() -> void:
+	%ExplosionSFX.play()
+
 func _on_body_entered(body: Node2D) -> void:
 	queue_free() # Deletes node, but waits one frame to do so
 	if body.has_method("take_damage_instant"):

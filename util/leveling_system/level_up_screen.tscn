@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://pxvdt4retwqp"]
+[gd_scene load_steps=15 format=3 uid="uid://pxvdt4retwqp"]
 
 [ext_resource type="Texture2D" uid="uid://draqpn80tq866" path="res://util/leveling_system/levelup_screen_sheet.png" id="1_5w567"]
 [ext_resource type="Script" uid="uid://cl804yg02c2pr" path="res://util/leveling_system/level_system.gd" id="1_g55x7"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dan1f8rkxel0k" path="res://util/leveling_system/upgrade_sprites/speed_upgrade.png" id="7_wsrpe"]
 [ext_resource type="Script" uid="uid://bm1tdohx1mayt" path="res://util/bullet_strategy/pierce_bullet_strat.gd" id="8_jg5a1"]
 [ext_resource type="Texture2D" uid="uid://b113nf7bb0qvk" path="res://util/leveling_system/upgrade_sprites/pierce_upgrade.png" id="9_5i4wc"]
+[ext_resource type="AudioStream" uid="uid://kpj6sshdtqdw" path="res://audio/level_up.wav" id="10_k7h8w"]
+[ext_resource type="AudioStream" uid="uid://bum0ncvjeaq7g" path="res://audio/upgrade_select.wav" id="11_0nm2e"]
 
 [sub_resource type="Resource" id="Resource_pe1tt"]
 script = ExtResource("4_ht365")
@@ -42,6 +44,14 @@ bullet_strategy = SubResource("Resource_c86tw")
 unique_name_in_owner = true
 position = Vector2(164, -50)
 bullet_strategy = SubResource("Resource_4p7co")
+
+[node name="LevelUpSFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("10_k7h8w")
+
+[node name="UpgradeSelectSFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_0nm2e")
 
 [connection signal="upgrade_selected" from="Upgrade1" to="." method="_on_upgrade_1_selected"]
 [connection signal="upgrade_selected" from="Upgrade2" to="." method="_on_upgrade_2_selected"]

@@ -9,6 +9,7 @@ var selected := -1 # (Null value)
 func _on_player_level_up() -> void:
 	get_tree().paused = true
 	visible = true
+	%LevelUpSFX.play()
 	
 	# Load Resource files for upgrades
 	const DAMAGE_STRATEGY := preload("res://util/bullet_strategy/damage_bullet.tres")
@@ -45,7 +46,7 @@ func _on_player_level_up() -> void:
 	await self.upgrade_chosen
 	
 	#### Following code will ONLY run when player has pressed a select button ####
-	
+	%UpgradeSelectSFX.play()
 	player.upgrades.append(upgrade_selection[selected])
 	visible = false
 	get_tree().paused = false

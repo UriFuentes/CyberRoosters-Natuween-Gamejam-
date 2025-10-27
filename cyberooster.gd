@@ -38,6 +38,9 @@ func spawn_mob():
 	%SpawnPath.progress_ratio = randf()
 	new_mob.global_position = %SpawnPath.global_position
 	add_child(new_mob)
+	
+func _on_spawn_increment_timeout() -> void:
+	%SpawnTimer.wait_time = clamp(%SpawnTimer.wait_time - 0.5, 0.5, 1)
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_mob()
@@ -51,9 +54,6 @@ func _on_elapsed_timer_timeout() -> void:
 	current_time = Time.get_unix_time_from_system()
 	var formatted_time = convert_time_MMSS(int(round(current_time - start_time)))
 	%ElapsedTime.set_text(formatted_time)
-
-func _on_spawn_increment_timeout() -> void:
-	%SpawnTimer.wait_time = clamp(%SpawnTimer.wait_time - 0.5, 0.5, 1)
 	
 #func _on_player_health_depleted() -> void:
 	#%GameOver.visible = true

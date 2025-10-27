@@ -10,7 +10,9 @@ var max_bounce = 0
 var range = 300
 var travelled_distance = 0
 var bodies_pierced = 0
-var secret_ability = false # (rm -r ./)
+#var secret_ability = false # (rm -r ./)
+
+@onready var BulletImpactSFX = $/root/Game/Player/Pistol/BulletImpactSFX
 
 func _physics_process(delta: float) -> void:
 	
@@ -25,6 +27,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+	BulletImpactSFX.play()
 	bodies_pierced += 1
 	if bodies_pierced > max_pierce:
 		queue_free() # Deletes node, but waits one frame to do so

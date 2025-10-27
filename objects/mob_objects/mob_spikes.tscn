@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuc2p8p80kpw"]
+[gd_scene load_steps=6 format=3 uid="uid://cuc2p8p80kpw"]
 
 [ext_resource type="Script" uid="uid://cj1o5gswmemk6" path="res://objects/mob_objects/mob_spike.gd" id="1_ypsf5"]
 [ext_resource type="Texture2D" uid="uid://dhlcn8wj0gv0s" path="res://characters/mobs/mob_attacks_sheet.png" id="2_8y8ng"]
+[ext_resource type="AudioStream" uid="uid://bxeh4i62acnbu" path="res://audio/spikesSFX.wav" id="3_8y8ng"]
 
 [sub_resource type="GDScript" id="GDScript_1ap5m"]
 script/source = "extends Node2D
@@ -27,6 +28,8 @@ func _ready() -> void:
 	SpikeRIGHT = %SpikeRIGHT
 	SpikeDOWN = %SpikeDOWN
 	SpikeLEFT = %SpikeLEFT
+	%SpikeSFX.play()
+	
 
 func _physics_process(delta: float) -> void:
 	global_position = get_parent().global_position
@@ -60,9 +63,8 @@ func process_direction(node, direction, delta) -> void:
 	
 	if node.global_position.distance_to(self.global_position) > 200.0:
 		node.global_position = global_position
-
-func _on_spike_timer_timeout() -> void:
-	pass # Replace with function body.
+		%SpikeSFX.play()
+		
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fmh33"]
@@ -134,11 +136,12 @@ region_rect = Rect2(0, 0, 32, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeLEFT"]
 shape = SubResource("CircleShape2D_fmh33")
 
-[node name="SpikeTimer" type="Timer" parent="."]
-autostart = true
+[node name="SpikeSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_8y8ng")
+volume_db = -5.0
 
 [connection signal="body_entered" from="SpikeUP" to="SpikeUP" method="_on_body_entered"]
 [connection signal="body_entered" from="SpikeRIGHT" to="SpikeRIGHT" method="_on_body_entered"]
 [connection signal="body_entered" from="SpikeDOWN" to="SpikeDOWN" method="_on_body_entered"]
 [connection signal="body_entered" from="SpikeLEFT" to="SpikeLEFT" method="_on_body_entered"]
-[connection signal="timeout" from="SpikeTimer" to="." method="_on_spike_timer_timeout"]

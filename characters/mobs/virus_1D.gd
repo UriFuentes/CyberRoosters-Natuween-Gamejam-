@@ -43,6 +43,7 @@ func shoot():
 	new_bullet.global_position = global_position
 	new_bullet.global_rotation = global_rotation 
 	add_sibling(new_bullet)
+	%ShootSFX.play()
 
 func _on_shoot_cooldown_timeout() -> void:
 	shoot()

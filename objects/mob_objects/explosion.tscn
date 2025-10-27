@@ -1,13 +1,29 @@
-[gd_scene load_steps=10 format=3 uid="uid://wkqeedm5um6r"]
+[gd_scene load_steps=11 format=3 uid="uid://wkqeedm5um6r"]
 
 [ext_resource type="Script" uid="uid://c0n3m7l5qwqtl" path="res://objects/mob_objects/explosion.gd" id="1_idktq"]
 [ext_resource type="Texture2D" uid="uid://dlevygbak7hcb" path="res://objects/mob_objects/glitch1.png" id="2_28wx7"]
 [ext_resource type="Texture2D" uid="uid://dnyc5m2fx1m4p" path="res://objects/mob_objects/glitch2.png" id="3_6wduh"]
 [ext_resource type="Texture2D" uid="uid://xhn0ltfx8sq7" path="res://objects/mob_objects/glitch3.png" id="4_y8hqf"]
 [ext_resource type="Texture2D" uid="uid://cp281kdk8nsde" path="res://objects/mob_objects/glitch4.png" id="5_454xu"]
+[ext_resource type="AudioStream" uid="uid://cf5g16isw8jt" path="res://audio/explosion.wav" id="6_28wx7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u63ws"]
 size = Vector2(34, 34)
+
+[sub_resource type="Animation" id="Animation_ql1m1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_28wx7")]
+}
 
 [sub_resource type="Animation" id="Animation_pgm6b"]
 resource_name = "corruption"
@@ -24,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("2_28wx7"), ExtResource("3_6wduh"), ExtResource("4_y8hqf"), ExtResource("5_454xu")]
-}
-
-[sub_resource type="Animation" id="Animation_ql1m1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_28wx7")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3bcsa"]
@@ -65,8 +66,13 @@ libraries = {
 }
 autoplay = "corruption"
 
+[node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_28wx7")
+volume_db = -15.0
+
 [node name="LifeSpan" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 9.0
 autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

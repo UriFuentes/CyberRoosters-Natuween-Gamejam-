@@ -38,6 +38,7 @@ func drop_loot():
 	add_sibling(new_drop)	
 
 func _on_spike_cooldown_timeout() -> void:
+	%SpikeSFX.play()
 	emit_signal("shoot_spikes")
 	
 func _on_damage_particles() -> void:

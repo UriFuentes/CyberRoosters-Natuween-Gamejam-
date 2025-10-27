@@ -1,16 +1,25 @@
 extends Area2D
 
 @onready var player = get_owner()
+@onready var BulletImpactSFX = %BulletImpactSFX
 
 var enemies_in_range
 var target_enemy
 
 func _physics_process(delta: float) -> void:
-	enemies_in_range = get_overlapping_bodies()
-	
+	var enemies_in_range = get_overlapping_bodies()
 	if enemies_in_range.size() > 0:
-		target_enemy = enemies_in_range.front()
-		look_at(target_enemy.global_position)
+		var closest_enemy = null
+		var closest_distance = INF
+
+		for enemy in enemies_in_range:
+			var distance = global_position.distance_to(enemy.global_position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_enemy = enemy
+
+		if closest_enemy:
+			look_at(closest_enemy.global_position)
 
 func shoot():
 	const BULLET = preload("res://objects/weapons/bullet.tscn") # Loads bullet at star of the game
@@ -22,6 +31,8 @@ func shoot():
 	# Add Strategy Upgrades
 	for strategy in player.upgrades:
 		strategy.apply_upgrade(new_bullet)
+		
+	%GunSFX.play()
 
 func _on_timer_timeout() -> void:
 	shoot()

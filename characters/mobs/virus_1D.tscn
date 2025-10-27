@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4c7aypts1s30"]
+[gd_scene load_steps=6 format=3 uid="uid://c4c7aypts1s30"]
 
 [ext_resource type="Texture2D" uid="uid://c2o1pjmfghcky" path="res://characters/mobs/virus_sheet.png" id="1_6r8vg"]
 [ext_resource type="Script" uid="uid://l0tnuu63x5b0" path="res://characters/mobs/virus_1D.gd" id="1_16dhn"]
+[ext_resource type="AudioStream" uid="uid://bll8d0vtcpc6x" path="res://audio/mob_shoot.wav" id="3_7g5uj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16dhn"]
 radius = 12.0
@@ -47,6 +48,11 @@ direction = Vector2(0, 0)
 gravity = Vector2(0, 0)
 initial_velocity_min = 188.41
 initial_velocity_max = 246.38
+
+[node name="ShootSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_7g5uj")
+volume_db = -13.0
 
 [connection signal="damage_particles" from="." to="." method="_on_damage_particles"]
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
