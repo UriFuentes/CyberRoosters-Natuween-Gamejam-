@@ -6,41 +6,65 @@ var minutes = 0
 
 func _ready() -> void:
 	start_time  = Time.get_unix_time_from_system()
+	
+	
+const MOB_WEIGHTS := {
+	1: { "virus_1A": 1.0 },
+	2: { "virus_1A": 0.8, "virus_1B": 0.2 },
+	4: { "virus_1A": 0.6, "virus_1B": 0.2, "virus_1C": 0.2 },
+	6: { "virus_1A": 0.5, "virus_1B": 0.1, "virus_1C": 0.2, "virus_1D": 0.1 }
+}
+
+@onready var spawn_timer := %SpawnTimer
+var extra_timers := []
+	
+func get_weighted_mob(minutes: int) -> PackedScene:
+	var tier := 1
+	
+	var sorted_keys := MOB_WEIGHTS.keys()
+	sorted_keys.sort()
+
+	for t in sorted_keys:
+		if minutes <= t:
+			tier = t
+			break
+
+	var weights = MOB_WEIGHTS[tier]
+	var total := 0.0
+	for w in weights.values():
+		total += w
+
+	var roll := randf() * total
+	var cumulative := 0.0
+	
+	for name in weights.keys():
+		cumulative += weights[name]
+		if roll <= cumulative:
+			return load("res://characters/mobs/%s.tscn" % name)
+	# fallback (shouldn't happen)
+	return load("res://characters/mobs/virus_1A.tscn")
+
+
 
 func spawn_mob():
-	var new_mob
-	var r = randi_range(1,10)
-	if minutes <= 1:
-		new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
-	elif minutes <= 2:
-		if r <= 7:
-			new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
-		else:
-			new_mob = preload("res://characters/mobs/virus_1B.tscn").instantiate()
-	elif minutes <= 4:
-		if r <= 4:
-			new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
-		elif r <= 8:
-			new_mob = preload("res://characters/mobs/virus_1B.tscn").instantiate()
-		else:
-			new_mob = preload("res://characters/mobs/virus_1C.tscn").instantiate()
-	elif minutes <= 6:
-		if r <= 3:
-			new_mob = preload("res://characters/mobs/virus_1A.tscn").instantiate()
-		elif r <= 5:
-			new_mob = preload("res://characters/mobs/virus_1B.tscn").instantiate()
-		elif r <= 7:
-			new_mob = preload("res://characters/mobs/virus_1C.tscn").instantiate()
-		else:
-			new_mob = preload("res://characters/mobs/virus_1D.tscn").instantiate()
-			
-
+	var mob_scene := get_weighted_mob(minutes)
+	var new_mob := mob_scene.instantiate()
 	%SpawnPath.progress_ratio = randf()
 	new_mob.global_position = %SpawnPath.global_position
 	add_child(new_mob)
-	
+
+
 func _on_spawn_increment_timeout() -> void:
-	%SpawnTimer.wait_time = clamp(%SpawnTimer.wait_time - 0.5, 0.5, 1)
+	spawn_timer.wait_time = clamp(spawn_timer.wait_time - 0.5, 0.5, 1)
+
+	if spawn_timer.wait_time <= 0.5 and extra_timers.size() < 3:
+		var extra := Timer.new()
+		extra.wait_time = 0.5
+		extra.one_shot = false
+		extra.timeout.connect(spawn_mob)
+		add_child(extra)
+		extra.start()
+		extra_timers.append(extra)
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_mob()
