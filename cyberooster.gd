@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var start_time
 var current_time
 var minutes = 0
@@ -7,6 +8,12 @@ var minutes = 0
 func _ready() -> void:
 	start_time  = Time.get_unix_time_from_system()
 	
+func _process(delta: float) -> void:
+	if minutes == 1:
+		%GameWon.visible = true
+		%VictorySFX.play()
+		get_tree().paused = true
+		
 	
 const MOB_WEIGHTS := {
 	1: { "virus_1A": 1.0 },
@@ -74,11 +81,14 @@ func convert_time_MMSS(time):
 	var seconds = time % 60
 	return "%02d:%02d" % [minutes, seconds]
 	
+
 func _on_elapsed_timer_timeout() -> void:
 	current_time = Time.get_unix_time_from_system()
 	var formatted_time = convert_time_MMSS(int(round(current_time - start_time)))
 	%ElapsedTime.set_text(formatted_time)
 	
-#func _on_player_health_depleted() -> void:
-	#%GameOver.visible = true
-	#get_tree().paused = true
+	
+func _on_player_health_depleted() -> void:
+	%GameOver.visible = true
+	%BackgroundMusic.pitch_scale = lerp(%BackgroundMusic.pitch_scale, 0.6, 0.1)
+	get_tree().paused = true

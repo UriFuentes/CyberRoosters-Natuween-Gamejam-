@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dna4ryythsdqg"]
+[gd_scene load_steps=13 format=3 uid="uid://dna4ryythsdqg"]
 
 [ext_resource type="Script" uid="uid://bhsm4qp58rba5" path="res://intro_scene.gd" id="1_fqpck"]
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="2_x3ncd"]
@@ -7,6 +7,34 @@
 [ext_resource type="AudioStream" uid="uid://diux1h5r8e0mx" path="res://audio/starting_beep.wav" id="4_b1u3c"]
 [ext_resource type="AudioStream" uid="uid://b4rauo4f78qvh" path="res://audio/title_screen.wav" id="5_w2ebg"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_w2ebg"]
+[ext_resource type="Texture2D" uid="uid://jcxigboiops0" path="res://characters/chicken_sheet.png" id="8_gh4j0"]
+
+[sub_resource type="Animation" id="Animation_2glrg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BootSequence:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TitleScreen:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_x3ncd"]
 resource_name = "boot_sequence"
@@ -57,33 +85,6 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_2glrg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BootSequence:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TitleScreen:modulate:a")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1.0]
-}
 
 [sub_resource type="Animation" id="Animation_o8unc"]
 resource_name = "title_screen"
@@ -189,6 +190,38 @@ scroll_following_visible_characters = true
 unique_name_in_owner = true
 visible = false
 
+[node name="UPR" type="RichTextLabel" parent="TitleScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 235.0
+offset_top = 181.0
+offset_right = 482.0
+offset_bottom = 214.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0.79607844, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_x3ncd")
+theme_override_font_sizes/normal_font_size = 16
+text = "UPRRP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CCOM" type="RichTextLabel" parent="TitleScreen"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 231.0
+offset_top = 195.0
+offset_right = 478.0
+offset_bottom = 228.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.15294118, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_x3ncd")
+theme_override_font_sizes/normal_font_size = 16
+text = "CCOM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TitleText" type="RichTextLabel" parent="TitleScreen"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -207,6 +240,12 @@ vertical_alignment = 1
 [node name="PixelGallo" type="Sprite2D" parent="TitleScreen"]
 position = Vector2(320, 152)
 texture = ExtResource("3_h7lmj")
+
+[node name="ChickenSheet" type="Sprite2D" parent="TitleScreen"]
+position = Vector2(202, 272)
+texture = ExtResource("8_gh4j0")
+region_enabled = true
+region_rect = Rect2(4, 4, 14, 25)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

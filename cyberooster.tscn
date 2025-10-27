@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbniwcw1ot0ps"]
+[gd_scene load_steps=11 format=3 uid="uid://bbniwcw1ot0ps"]
 
 [ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
 [ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://player/player.tscn" id="1_tx5xb"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://pxvdt4retwqp" path="res://util/leveling_system/level_up_screen.tscn" id="6_ohav6"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
 [ext_resource type="AudioStream" uid="uid://d13xcsykegynv" path="res://audio/background_music.wav" id="7_ukgty"]
-[ext_resource type="PackedScene" uid="uid://breilajifpmk6" path="res://characters/mobs/virus_1B.tscn" id="8_sq21o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
 shader = ExtResource("2_oxwii")
@@ -83,6 +82,58 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
 theme_override_fonts/font = ExtResource("3_kmddx")
 
+[node name="GameStates" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GameOver" type="CanvasGroup" parent="GameStates"]
+unique_name_in_owner = true
+visible = false
+z_index = 3
+
+[node name="ColorRect" type="ColorRect" parent="GameStates/GameOver"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 640.0
+offset_bottom = 340.0
+color = Color(0.12941177, 0, 0, 0.9137255)
+
+[node name="GameOverText" type="RichTextLabel" parent="GameStates/GameOver"]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 453.0
+offset_bottom = 116.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_kmddx")
+theme_override_font_sizes/normal_font_size = 40
+text = "Game OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameWon" type="CanvasGroup" parent="GameStates"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameStates/GameWon"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 640.0
+offset_bottom = 340.0
+color = Color(0, 0.15294118, 0, 0.9137255)
+
+[node name="PausedText" type="RichTextLabel" parent="GameStates/GameWon"]
+offset_left = 96.0
+offset_top = 64.0
+offset_right = 542.0
+offset_bottom = 252.0
+theme_override_colors/default_color = Color(0.12100983, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_kmddx")
+theme_override_font_sizes/normal_font_size = 40
+text = "CORRUPTION CLEANSED.
+YOU WIN."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LevelUp" type="CanvasLayer" parent="."]
 follow_viewport_scale = 1.17
 
@@ -120,15 +171,18 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
 stream = ExtResource("7_ukgty")
 autoplay = true
+
+[node name="VictorySFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 
 [node name="GlobalGlow" type="WorldEnvironment" parent="."]
 environment = ExtResource("6_pfh8x")
 
-[node name="virus_1B" parent="." instance=ExtResource("8_sq21o")]
-position = Vector2(40, 295)
-
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="level_up" from="Player" to="Player/LevelUpScreen" method="_on_player_level_up"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnIncrement" to="." method="_on_spawn_increment_timeout"]
