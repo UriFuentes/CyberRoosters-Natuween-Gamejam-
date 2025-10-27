@@ -1,6 +1,6 @@
 extends Area2D
 
-var damage = 50.0
+var damage = 33.0
 
 func _ready() -> void:
 	%ExplosionSFX.play()

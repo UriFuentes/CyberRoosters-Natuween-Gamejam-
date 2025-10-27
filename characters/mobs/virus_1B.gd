@@ -6,7 +6,7 @@ var particle_direction
 
 var health = 3.0
 const DAMAGE_OUTPUT_MELEE = 10.0
-const DAMAGE_OUTPUT_RANGE = 20.0
+const DAMAGE_OUTPUT_RANGE = 15.0
 var speed = 100
 
 @onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
