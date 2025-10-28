@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbniwcw1ot0ps"]
+[gd_scene load_steps=13 format=3 uid="uid://bbniwcw1ot0ps"]
 
 [ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
 [ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://player/player.tscn" id="1_tx5xb"]
 [ext_resource type="Texture2D" uid="uid://dj3b2bamv2br1" path="res://other/bkg_grid.png" id="2_kmddx"]
 [ext_resource type="Shader" uid="uid://bbhlwjs20eefw" path="res://bkg.gdshader" id="2_oxwii"]
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="3_kmddx"]
+[ext_resource type="Script" uid="uid://bya1oktlkgykd" path="res://scripts/player_info.gd" id="4_sq21o"]
 [ext_resource type="Script" uid="uid://dgr65dcacvi8a" path="res://scripts/game_states.gd" id="5_sq21o"]
 [ext_resource type="PackedScene" uid="uid://pxvdt4retwqp" path="res://util/leveling_system/level_up_screen.tscn" id="6_ohav6"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
@@ -46,6 +47,7 @@ texture = ExtResource("2_kmddx")
 stretch_mode = 1
 
 [node name="PlayerInfo" type="CanvasLayer" parent="."]
+script = ExtResource("4_sq21o")
 
 [node name="PlayerXP" type="Label" parent="PlayerInfo"]
 unique_name_in_owner = true
@@ -84,11 +86,13 @@ theme_override_colors/font_color = Color(0.33333334, 1, 0.33333334, 1)
 theme_override_fonts/font = ExtResource("3_kmddx")
 
 [node name="GameStates" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 2
 script = ExtResource("5_sq21o")
 
 [node name="GamePaused" type="CanvasGroup" parent="GameStates"]
 unique_name_in_owner = true
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="GameStates/GamePaused"]
 offset_left = -24.0
@@ -229,3 +233,5 @@ environment = ExtResource("6_pfh8x")
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnIncrement" to="." method="_on_spawn_increment_timeout"]
 [connection signal="timeout" from="ElapsedTimer" to="." method="_on_elapsed_timer_timeout"]
+[connection signal="timeout" from="ElapsedTimer" to="PlayerInfo" method="_on_elapsed_timer_timeout"]
+[connection signal="timeout" from="ElapsedTimer" to="GameStates" method="_on_elapsed_timer_timeout"]

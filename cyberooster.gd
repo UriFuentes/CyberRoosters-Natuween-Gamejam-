@@ -1,15 +1,12 @@
 extends Node2D
 
 
-var start_time
-var current_time
-var minutes = 0
+var elapsed_time := 0
+var minutes := 0
 
-func _ready() -> void:
-	start_time  = Time.get_unix_time_from_system()
 	
 func _process(delta: float) -> void:
-	if minutes == 1:
+	if minutes == 8:
 		%GameWon.visible = true
 		%VictorySFX.play()
 		get_tree().paused = true
@@ -82,8 +79,8 @@ func convert_time_MMSS(time):
 	
 
 func _on_elapsed_timer_timeout() -> void:
-	current_time = Time.get_unix_time_from_system()
-	var formatted_time = convert_time_MMSS(int(round(current_time - start_time)))
+	elapsed_time += 1
+	var formatted_time = convert_time_MMSS(elapsed_time)
 	%ElapsedTime.set_text(formatted_time)
 	
 	
