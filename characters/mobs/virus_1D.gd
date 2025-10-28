@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal damage_particles
 var particle_direction
 
-var health = 3.0
+var health = 5.0
 const DAMAGE_OUTPUT_MELEE = 10.0
 const DAMAGE_OUTPUT_RANGE = 30.0
 var speed = 80
@@ -21,6 +21,7 @@ func take_damage_instant(x):
 	health -= x
 	emit_signal("damage_particles")
 	if health <= 0:
+		await get_tree().create_timer(0.15).timeout
 		queue_free()
 		drop_loot()
 	

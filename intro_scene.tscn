@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://dna4ryythsdqg"]
 
-[ext_resource type="Script" uid="uid://bhsm4qp58rba5" path="res://intro_scene.gd" id="1_fqpck"]
+[ext_resource type="Script" uid="uid://bhsm4qp58rba5" path="res://scripts/intro_scene.gd" id="1_fqpck"]
 [ext_resource type="FontFile" uid="uid://dtwvr2q5thwe1" path="res://other/KenneyFonts/Kenney Mini Square.ttf" id="2_x3ncd"]
 [ext_resource type="Texture2D" uid="uid://cbst5u1ov2js2" path="res://other/pixel_gallo.png" id="3_h7lmj"]
 [ext_resource type="AudioStream" uid="uid://btdjs3r5gmq7s" path="res://audio/typing.wav" id="3_o8unc"]
 [ext_resource type="AudioStream" uid="uid://diux1h5r8e0mx" path="res://audio/starting_beep.wav" id="4_b1u3c"]
 [ext_resource type="AudioStream" uid="uid://b4rauo4f78qvh" path="res://audio/title_screen.wav" id="5_w2ebg"]
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_w2ebg"]
-[ext_resource type="Texture2D" uid="uid://jcxigboiops0" path="res://characters/chicken_sheet.png" id="8_gh4j0"]
+[ext_resource type="Texture2D" uid="uid://jcxigboiops0" path="res://player/chicken_sheet.png" id="8_gh4j0"]
 
 [sub_resource type="Animation" id="Animation_2glrg"]
 length = 0.001

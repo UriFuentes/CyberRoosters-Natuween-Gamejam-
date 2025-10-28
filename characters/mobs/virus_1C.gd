@@ -20,11 +20,13 @@ func take_damage_instant(x):
 	health -= x
 	emit_signal("damage_particles")
 	if health <= 0:
-		queue_free() # Remove the mob
 		var new_explosion = preload("res://objects/mob_objects/explosion.tscn").instantiate()
 		new_explosion.global_position = global_position  # Set explosion at mob's location
 		add_sibling(new_explosion)           # Add explosion to the scene
 		drop_loot()
+		await get_tree().create_timer(0.15).timeout
+		queue_free() # Remove the mob
+		
 	
 func drop_loot():
 	# Create random loot drop

@@ -52,7 +52,6 @@ func get_weighted_mob(minutes: int) -> PackedScene:
 	return load("res://characters/mobs/virus_1A.tscn")
 
 
-
 func spawn_mob():
 	var mob_scene := get_weighted_mob(minutes)
 	var new_mob := mob_scene.instantiate()
@@ -91,4 +90,4 @@ func _on_elapsed_timer_timeout() -> void:
 func _on_player_health_depleted() -> void:
 	%GameOver.visible = true
 	%BackgroundMusic.pitch_scale = lerp(%BackgroundMusic.pitch_scale, 0.6, 0.1)
-	get_tree().paused = true
+	Global.kill_player(%Player)

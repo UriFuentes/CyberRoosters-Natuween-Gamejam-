@@ -28,6 +28,7 @@ metadata/_custom_type_script = "uid://bm1tdohx1mayt"
 script = ExtResource("1_g55x7")
 
 [node name="LevelUpBkg" type="Sprite2D" parent="."]
+modulate = Color(0.98039216, 0.98039216, 0.98039216, 1)
 texture = ExtResource("1_5w567")
 
 [node name="Upgrade1" parent="." instance=ExtResource("2_g55x7")]

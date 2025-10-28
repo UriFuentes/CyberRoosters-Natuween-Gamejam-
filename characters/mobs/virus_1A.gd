@@ -22,6 +22,7 @@ func take_damage_instant(x):
 	emit_signal("damage_particles")
 	
 	if health <= 0:
+		await get_tree().create_timer(0.15).timeout
 		queue_free()
 		drop_loot()
 	

@@ -10,22 +10,21 @@ config_version=5
 
 [application]
 
-config/name="CyberRooster"
-run/main_scene="uid://dna4ryythsdqg"
+config/name="GallitoDefender"
+config/version="0.1"
+run/main_scene="uid://bbniwcw1ot0ps"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="uid://dc8pyyp8wtbnf"
 
 [autoload]
 
-Global="*res://global.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/initial_position_type=0
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
@@ -40,6 +39,7 @@ folder_colors={
 "res://objects/": "yellow",
 "res://other/": "gray",
 "res://player/": "green",
+"res://scripts/": "orange",
 "res://util/": "pink"
 }
 
