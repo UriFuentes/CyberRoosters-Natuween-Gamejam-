@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c24p17osm5yk"
-path="res://.godot/imported/damage_upgrade.png-1bc2003eb0add1c4482deeb1c9403f89.ctex"
+uid="uid://c2rcco0uynkov"
+path="res://.godot/imported/bounce_upgrade.png-be9b97b735095da11bbe4a86d149ef85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://util/leveling_system/upgrade_sprites/damage_upgrade.png"
-dest_files=["res://.godot/imported/damage_upgrade.png-1bc2003eb0add1c4482deeb1c9403f89.ctex"]
+source_file="res://util/leveling_system/upgrade_sprites/bullet/bounce_upgrade.png"
+dest_files=["res://.godot/imported/bounce_upgrade.png-be9b97b735095da11bbe4a86d149ef85.ctex"]
 
 [params]
 

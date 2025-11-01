@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b113nf7bb0qvk"
-path="res://.godot/imported/pierce_upgrade.png-d1f4da4e2dc7f33005a40f99d79b6297.ctex"
+uid="uid://dan1f8rkxel0k"
+path="res://.godot/imported/speed_upgrade.png-59e0a1d9be8e481a915d544134519a95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://util/leveling_system/upgrade_sprites/pierce_upgrade.png"
-dest_files=["res://.godot/imported/pierce_upgrade.png-d1f4da4e2dc7f33005a40f99d79b6297.ctex"]
+source_file="res://util/leveling_system/upgrade_sprites/bullet/speed_upgrade.png"
+dest_files=["res://.godot/imported/speed_upgrade.png-59e0a1d9be8e481a915d544134519a95.ctex"]
 
 [params]
 

@@ -1,19 +1,18 @@
 extends Node2D
 
+signal game_won
 
 var elapsed_time := 0
 var minutes := 0
 
-	
+
 func _process(delta: float) -> void:
 	if minutes == 8:
-		%GameWon.visible = true
-		%VictorySFX.play()
-		get_tree().paused = true
-		
-	
-const MOB_WEIGHTS := {
-	1: { "virus_1A": 1.0 },
+		emit_signal("game_won")
+
+
+const MOB_WEIGHTS := { # Minute:  Mob : Weight
+	1: { "virus_1A": 1.0 }, 
 	2: { "virus_1A": 0.8, "virus_1B": 0.2 },
 	4: { "virus_1A": 0.6, "virus_1B": 0.2, "virus_1C": 0.2 },
 	6: { "virus_1A": 0.5, "virus_1B": 0.1, "virus_1C": 0.2, "virus_1D": 0.1 }
@@ -83,8 +82,3 @@ func _on_elapsed_timer_timeout() -> void:
 	var formatted_time = convert_time_MMSS(elapsed_time)
 	%ElapsedTime.set_text(formatted_time)
 	
-	
-func _on_player_health_depleted() -> void:
-	%GameOver.visible = true
-	%BackgroundMusic.pitch_scale = lerp(%BackgroundMusic.pitch_scale, 0.6, 0.1)
-	Global.kill_player(%Player)

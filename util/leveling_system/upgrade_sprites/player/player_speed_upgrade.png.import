@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2rcco0uynkov"
-path="res://.godot/imported/bounce_upgrade.png-aea9ee15e501af5c3be5a92023e6775d.ctex"
+uid="uid://ca8u6a6n8sgef"
+path="res://.godot/imported/player_speed_upgrade.png-0582cd5ba9c05e8d854181717c6b9a13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://util/leveling_system/upgrade_sprites/bounce_upgrade.png"
-dest_files=["res://.godot/imported/bounce_upgrade.png-aea9ee15e501af5c3be5a92023e6775d.ctex"]
+source_file="res://util/leveling_system/upgrade_sprites/player/player_speed_upgrade.png"
+dest_files=["res://.godot/imported/player_speed_upgrade.png-0582cd5ba9c05e8d854181717c6b9a13.ctex"]
 
 [params]
 

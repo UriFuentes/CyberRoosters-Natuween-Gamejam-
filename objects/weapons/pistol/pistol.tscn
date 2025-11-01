@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct201h6wv47qp"]
+[gd_scene load_steps=6 format=3 uid="uid://ct201h6wv47qp"]
 
 [ext_resource type="Script" uid="uid://du4r1n0608xg1" path="res://objects/weapons/pistol/pistol.gd" id="1_bw3mi"]
 [ext_resource type="Texture2D" uid="uid://503ahvstu2b3" path="res://objects/weapons/weapons_sheet.png" id="2_v7qk2"]
 [ext_resource type="AudioStream" uid="uid://bsdt6keaqs3xv" path="res://audio/gun_laser.wav" id="3_m0rrv"]
 [ext_resource type="AudioStream" uid="uid://14v7dsr6hgix" path="res://audio/mob_damage.wav" id="4_foq0q"]
-[ext_resource type="Script" uid="uid://cx7rv38cmeom2" path="res://objects/weapons/pistol/bullet_impact_sfx.gd" id="5_6nfsp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_646vd"]
 radius = 150.01334
@@ -30,7 +29,7 @@ position = Vector2(5, -2)
 visible = false
 shape = SubResource("CircleShape2D_646vd")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="FireRate" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
 
@@ -42,6 +41,5 @@ stream = ExtResource("3_m0rrv")
 unique_name_in_owner = true
 stream = ExtResource("4_foq0q")
 volume_db = -7.5
-script = ExtResource("5_6nfsp")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FireRate" to="." method="_on_timer_timeout"]

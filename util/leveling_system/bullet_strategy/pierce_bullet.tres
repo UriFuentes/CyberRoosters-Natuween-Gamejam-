@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PierceBulletStrategy" load_steps=3 format=3 uid="uid://dhnl6kkihle1i"]
+
+[ext_resource type="Script" uid="uid://bm1tdohx1mayt" path="res://util/leveling_system/bullet_strategy/pierce_bullet_strat.gd" id="1_hlqs0"]
+[ext_resource type="Texture2D" uid="uid://b113nf7bb0qvk" path="res://util/leveling_system/upgrade_sprites/bullet/pierce_upgrade.png" id="2_b7bih"]
+
+[resource]
+script = ExtResource("1_hlqs0")
+metadata/_custom_type_script = "uid://bm1tdohx1mayt"

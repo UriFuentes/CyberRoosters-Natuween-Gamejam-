@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="SpeedBulletStrategy" load_steps=3 format=3 uid="uid://dgkpqsjkqey6n"]
-
-[ext_resource type="Script" uid="uid://dprfybhatnp4f" path="res://util/bullet_strategy/speed_bullet_strat.gd" id="1_2o3go"]
-[ext_resource type="Texture2D" uid="uid://dan1f8rkxel0k" path="res://util/leveling_system/upgrade_sprites/speed_upgrade.png" id="2_wdfn2"]
-
-[resource]
-script = ExtResource("1_2o3go")
-metadata/_custom_type_script = "uid://dprfybhatnp4f"

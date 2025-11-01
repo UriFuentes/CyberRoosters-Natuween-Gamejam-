@@ -6,6 +6,8 @@ var damage = 1.0
 var speed = 100
 var max_pierce = 0
 var max_bounce = 0
+
+
 var velocity := Vector2.ZERO
 var range = 700
 var travelled_distance = 0

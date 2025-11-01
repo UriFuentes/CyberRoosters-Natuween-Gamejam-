@@ -29,8 +29,8 @@ func shoot():
 	%ShootPoint.add_child(new_bullet)
 	
 	# Add Strategy Upgrades
-	for strategy in player.upgrades:
-		strategy.apply_upgrade(new_bullet)
+	for strategy in player.bullet_upgrades:
+		strategy.apply_bullet_upgrade(new_bullet)
 		
 	%GunSFX.play()
 

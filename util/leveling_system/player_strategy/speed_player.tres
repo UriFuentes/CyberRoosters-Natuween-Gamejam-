@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SpeedPlayerStrategy" load_steps=3 format=3 uid="uid://dr0ysfq6xlhto"]
+
+[ext_resource type="Script" uid="uid://cjo7xkcv6ptc8" path="res://util/leveling_system/player_strategy/speed_player_strat.gd" id="1_wpy8d"]
+[ext_resource type="Texture2D" uid="uid://ca8u6a6n8sgef" path="res://util/leveling_system/upgrade_sprites/player/player_speed_upgrade.png" id="2_8g2hi"]
+
+[resource]
+script = ExtResource("1_wpy8d")
+metadata/_custom_type_script = "uid://cjo7xkcv6ptc8"

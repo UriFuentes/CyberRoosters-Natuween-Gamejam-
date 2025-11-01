@@ -10,9 +10,8 @@ var speed = 150
 
 var xp = 0
 var next_level_xp = 10 # Starting value
-var upgrades : Array[BaseBulletStrategy] # Holds Bullet strategy upgrades
-
-@onready var infolabel = %PlayerXP
+var bullet_upgrades : Array[BaseUpgradeStrategy] # Holds Bullet strategy upgrades
+var player_upgrades = 0 # Holds Player bullet strategies
 
 var damage_sfx_cooldown := 0.2  # seconds between sound plays
 var damage_sfx_timer := 0.0
@@ -74,4 +73,9 @@ func gain_health(x):
 	%HealthBar.value = health
 
 func add_upgrade(upgrade) -> void:
-	upgrades.append(upgrade)
+	bullet_upgrades.append(upgrade)
+
+
+func _on_level_up_screen_apply_player_upgrade() -> void:
+	player_upgrades.apply_bullet_upgrade(self)
+	print("jere")

@@ -37,6 +37,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
 visible = false
+modulate = Color(1, 1, 1, 0.17254902)
 material = SubResource("ShaderMaterial_pfh8x")
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,12 +227,12 @@ unique_name_in_owner = true
 [node name="GlobalGlow" type="WorldEnvironment" parent="."]
 environment = ExtResource("6_pfh8x")
 
+[connection signal="game_won" from="." to="GameStates" method="_on_game_won"]
 [connection signal="pressed" from="GameStates/GameOver/RestartButton" to="GameStates" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GameStates/GameWon/RestartButton" to="GameStates" method="_on_restart_button_pressed"]
-[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="health_depleted" from="Player" to="GameStates" method="_on_player_health_depleted"]
 [connection signal="level_up" from="Player" to="Player/LevelUpScreen" method="_on_player_level_up"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="SpawnIncrement" to="." method="_on_spawn_increment_timeout"]
 [connection signal="timeout" from="ElapsedTimer" to="." method="_on_elapsed_timer_timeout"]
 [connection signal="timeout" from="ElapsedTimer" to="PlayerInfo" method="_on_elapsed_timer_timeout"]
-[connection signal="timeout" from="ElapsedTimer" to="GameStates" method="_on_elapsed_timer_timeout"]
