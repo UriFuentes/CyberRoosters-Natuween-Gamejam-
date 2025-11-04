@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FireratePlayerStrategy" load_steps=3 format=3 uid="uid://d1yhqv72xh0xy"]
+
+[ext_resource type="Script" uid="uid://dhubg885a3ueh" path="res://util/leveling_system/player_strategy/firerate_player_upgrade.gd" id="1_twun8"]
+[ext_resource type="Texture2D" uid="uid://w4utrfduud50" path="res://util/leveling_system/upgrade_sprites/player/player_firerate_upgrade.png" id="2_bvude"]
+
+[resource]
+script = ExtResource("1_twun8")
+metadata/_custom_type_script = "uid://dhubg885a3ueh"

@@ -16,6 +16,7 @@ var player_upgrades = 0 # Holds Player bullet strategies
 var damage_sfx_cooldown := 0.2  # seconds between sound plays
 var damage_sfx_timer := 0.0
 
+@onready var pistol_firerate_timer = $Pistol/FireRate
 
 func _physics_process(delta: float) -> void:
 	# Movement
@@ -78,4 +79,7 @@ func add_upgrade(upgrade) -> void:
 
 func _on_level_up_screen_apply_player_upgrade() -> void:
 	player_upgrades.apply_bullet_upgrade(self)
-	print("jere")
+	
+
+func change_firerate(scale) -> void:
+	pistol_firerate_timer.wait_time -= pistol_firerate_timer.wait_time * scale

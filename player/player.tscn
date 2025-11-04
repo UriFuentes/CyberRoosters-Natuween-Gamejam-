@@ -111,6 +111,7 @@ value = 100.0
 show_percentage = false
 
 [node name="Pistol" parent="." instance=ExtResource("3_tory2")]
+unique_name_in_owner = true
 
 [node name="PlayerAnimation" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
