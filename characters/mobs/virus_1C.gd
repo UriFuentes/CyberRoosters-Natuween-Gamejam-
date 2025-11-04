@@ -24,7 +24,7 @@ func take_damage_instant(x):
 		new_explosion.global_position = global_position  # Set explosion at mob's location
 		add_sibling(new_explosion)           # Add explosion to the scene
 		drop_loot()
-		await get_tree().create_timer(0.15).timeout
+		await get_tree().create_timer(0.1).timeout
 		queue_free() # Remove the mob
 		
 	
