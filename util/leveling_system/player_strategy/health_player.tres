@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HealthPlayerStrategy" load_steps=3 format=3 uid="uid://bp1y6ni6m3wxj"]
+
+[ext_resource type="Script" uid="uid://bd3w1od6x5osv" path="res://util/leveling_system/player_strategy/health_player_strat.gd" id="1_mopay"]
+[ext_resource type="Texture2D" uid="uid://dorcso3s3v2fl" path="res://util/leveling_system/upgrade_sprites/player/player_health_upgrade.png" id="2_6mcdf"]
+
+[resource]
+script = ExtResource("1_mopay")
+metadata/_custom_type_script = "uid://bd3w1od6x5osv"

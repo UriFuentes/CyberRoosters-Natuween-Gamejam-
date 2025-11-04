@@ -30,6 +30,7 @@ visible = false
 shape = SubResource("CircleShape2D_646vd")
 
 [node name="FireRate" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.3
 autostart = true
 

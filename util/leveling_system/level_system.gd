@@ -19,6 +19,7 @@ func _on_player_level_up() -> void:
 	const PIERCE_BULLET_STRATEGY := preload("res://util/leveling_system/bullet_strategy/pierce_bullet.tres")
 	# Load Resource files for player upgrades
 	const SPEED_PLAYER_STRATEGY := preload("res://util/leveling_system/player_strategy/speed_player.tres")
+	const HEALTH_PLAYER_STRATEGY := preload("res://util/leveling_system/player_strategy/health_player.tres")
 	
 
 	# Generate 3 random upgrades to select from
@@ -27,13 +28,14 @@ func _on_player_level_up() -> void:
 		var upgrade_type := 0
 		var upgrade
 		while true:
-			upgrade_type = randi_range(1,5)
+			upgrade_type = randi_range(1,6)
 			match upgrade_type:
 				1: upgrade = DAMAGE_BULLET_STRATEGY
 				2: upgrade = SPEED_BULLET_STRATEGY
 				3: upgrade = BOUNCE_BULLET_STRATEGY
 				4: upgrade = PIERCE_BULLET_STRATEGY
 				5: upgrade = SPEED_PLAYER_STRATEGY
+				6: upgrade = HEALTH_PLAYER_STRATEGY
 			if upgrade not in upgrade_selection: # Avoids duplicates
 				break
 				
