@@ -23,7 +23,7 @@ func _ready() -> void:
 	velocity = Vector2.RIGHT.rotated(rotation) * speed
 
 func _physics_process(delta: float) -> void:
-	# Area nodes dont have move and slide, instead they need to be moved with postion or global_position
+	velocity = Vector2.RIGHT.rotated(rotation) * speed
 	position += velocity * delta
 	travelled_distance += velocity.length() * delta
 
@@ -53,6 +53,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if collision:
 			var normal = collision.normal
 			velocity = velocity.bounce(normal)
+			rotation = velocity.angle()
 		
 		bodies_bounced += 1
 		

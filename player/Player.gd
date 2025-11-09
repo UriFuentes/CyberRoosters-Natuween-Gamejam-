@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	if xp >= next_level_xp:
 		level_up.emit() # Signal to level_system.gd
 		next_level_xp = ( next_level_xp + 10 ) * 1.1
-	
+		
 
 ###### Damage Types ######
 func take_damage_over_time(dmg):
@@ -57,6 +57,7 @@ func take_damage_over_time(dmg):
 	if health <= 0.0:
 		health_depleted.emit()
 
+
 func take_damage_instant(dmg):
 	%DamageSFX.play()
 	health -= dmg
@@ -64,14 +65,28 @@ func take_damage_instant(dmg):
 	if health <= 0.0:
 		health_depleted.emit()
 
+
 ###### Lootables ######
 func gain_xp(x):
 	xp += x
 	%PlayerXP.set_text("Print(XP)\n  > " + str(xp))
-	
-func gain_health(x):
+
+
+func gain_health(x) -> void:
 	health = clamp(health + x, 0, max_health)
 	%HealthBar.value = health
+	
+	
+###### Upgrades ######
+func incr_max_health(increase) -> void:
+	max_health += increase
+	%HealthBar.max_value = max_health
+	health += increase
+	
+
+func change_firerate(scale) -> void:
+	pistol_firerate_timer.wait_time -= pistol_firerate_timer.wait_time * scale
+
 
 func add_upgrade(upgrade) -> void:
 	bullet_upgrades.append(upgrade)
@@ -80,6 +95,3 @@ func add_upgrade(upgrade) -> void:
 func _on_level_up_screen_apply_player_upgrade() -> void:
 	player_upgrades.apply_bullet_upgrade(self)
 	
-
-func change_firerate(scale) -> void:
-	pistol_firerate_timer.wait_time -= pistol_firerate_timer.wait_time * scale

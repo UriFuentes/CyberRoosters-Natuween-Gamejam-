@@ -7,6 +7,8 @@ var health = 4.0
 const DAMAGE_OUTPUT_MELEE = 15.0
 var speed = 130
 
+var bomb_spawn_lock = false
+
 @onready var player = get_tree().get_root().get_node("Game/Player") # Onready checks if player is available
 @onready var HitParticles = %HitParticles
 
@@ -20,13 +22,16 @@ func take_damage_instant(x):
 	health -= x
 	emit_signal("damage_particles")
 	if health <= 0:
-		var new_explosion = preload("res://objects/mob_objects/explosion.tscn").instantiate()
-		new_explosion.global_position = global_position  # Set explosion at mob's location
-		add_sibling(new_explosion)           # Add explosion to the scene
 		drop_loot()
 		await get_tree().create_timer(0.1).timeout
 		queue_free() # Remove the mob
 		
+		# Add explosion to the scene
+		if bomb_spawn_lock == false:
+			bomb_spawn_lock = true
+			var new_explosion = preload("res://objects/mob_objects/explosion.tscn").instantiate()
+			new_explosion.global_position = global_position  # Set explosion at mob's location
+			add_sibling(new_explosion)
 	
 func drop_loot():
 	# Create random loot drop

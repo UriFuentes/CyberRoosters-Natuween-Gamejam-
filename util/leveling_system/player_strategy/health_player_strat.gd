@@ -8,7 +8,6 @@ extends BaseUpgradeStrategy
 
 func apply_player_upgrade(player:Player):
 	print("Old max health: ", player.max_health)
-	player.max_health += health_increase
-	player.health += health_increase
+	player.incr_max_health(health_increase)
 	print("New max health: ", player.max_health)
 	
