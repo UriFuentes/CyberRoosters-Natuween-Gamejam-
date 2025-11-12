@@ -9,7 +9,7 @@ var max_bounce = 0
 
 
 var velocity := Vector2.ZERO
-var range = 700
+var range = 1200
 var travelled_distance = 0
 var bodies_pierced = 0
 var bodies_bounced = 0

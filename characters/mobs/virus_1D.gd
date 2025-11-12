@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal damage_particles
 var particle_direction
 
-var health = 5.0
+var health = 10.0
 const DAMAGE_OUTPUT_MELEE = 10.0
 const DAMAGE_OUTPUT_RANGE = 30.0
 var speed = 80
