@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjxhcvpcl00y0"]
+
+[ext_resource type="Script" uid="uid://cdga5hpmimceg" path="res://objects/loot/xp_collector.gd" id="1_g6hem"]
+[ext_resource type="Texture2D" uid="uid://db5wckyj30rw6" path="res://objects/loot/loot_sheet.png" id="2_0k8fw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1j6ly"]
+size = Vector2(26, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwypc"]
+radius = 588.02124
+
+[node name="xpCollector" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_g6hem")
+
+[node name="LootSheet" type="Sprite2D" parent="."]
+texture = ExtResource("2_0k8fw")
+region_enabled = true
+region_rect = Rect2(70, 6, 20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1j6ly")
+
+[node name="CollectionRange" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionRange"]
+shape = SubResource("CircleShape2D_jwypc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4hs06"]
 
 [node name="xp_point" type="Area2D"]
-collision_layer = 0
+collision_layer = 4
 script = ExtResource("1_28bts")
 
 [node name="LootSheet" type="Sprite2D" parent="."]
