@@ -10,11 +10,16 @@ var speed = 150
 
 var xp = 0
 var next_level_xp = 10 # Starting value
+
 var bullet_upgrades : Array[BaseUpgradeStrategy] # Holds Bullet strategy upgrades
 var player_upgrades = 0 # Holds Player bullet strategies
 
 var damage_sfx_cooldown := 0.2  # seconds between sound plays
 var damage_sfx_timer := 0.0
+
+# Powerup player states
+var powerup_time = 5.0 # Player is in power up state for 5 seconds
+var rainbow_state = false
 
 @onready var pistol_firerate_timer = $Pistol/FireRate
 
@@ -26,14 +31,20 @@ func _physics_process(delta: float) -> void:
 	
 	# Animation
 	if velocity.length() > 0:
-		%PlayerAnimation.play("player_walk")
+		if rainbow_state:
+			%PlayerAnimation.play("player_walk_rainbow")
+		else:
+			%PlayerAnimation.play("player_walk")
 	else:
-		%PlayerAnimation.play("player_idle")
+		if rainbow_state:
+			%PlayerAnimation.play("player_idle_rainbow")
+		else:
+			%PlayerAnimation.play("player_idle")
 	
-	# Melee Damage
+	# Incoming Melee Damage
 	damage_sfx_timer -= delta
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
-	if overlapping_mobs.size():
+	if overlapping_mobs.size() and not rainbow_state:
 		for mob in overlapping_mobs:
 			if damage_sfx_timer <= 0.0:
 				%DamageSFX.play()
@@ -48,9 +59,9 @@ func _physics_process(delta: float) -> void:
 	if xp >= next_level_xp:
 		level_up.emit() # Signal to level_system.gd
 		next_level_xp = ( next_level_xp + 10 ) * 1.1
-		
 
-###### Damage Types ######
+
+###### DAMAGE TYPES ######
 func take_damage_over_time(dmg):
 	health -= dmg * get_physics_process_delta_time() 
 	%HealthBar.value = health
@@ -66,8 +77,8 @@ func take_damage_instant(dmg):
 		health_depleted.emit()
 
 
-###### Lootables ######
-func gain_xp(x):
+###### LOOTABLES ######
+func gain_xp(x) -> void:
 	xp += x
 	%PlayerXP.set_text("Print(XP)\n  > " + str(xp))
 
@@ -75,14 +86,24 @@ func gain_xp(x):
 func gain_health(x) -> void:
 	health = clamp(health + x, 0, max_health)
 	%HealthBar.value = health
-	
-	
-###### Upgrades ######
+
+
+###### POWERUPS ######
+func start_rainbow_powerup() -> void:
+	rainbow_state = true
+	%RainbowTimer.start(powerup_time)
+
+func _on_rainbow_timer_timeout() -> void:
+	rainbow_state = false
+	%PlayerAnimation.play("RESET") # Avoids leaving player in color
+
+
+###### UPGRADES ######
 func incr_max_health(increase) -> void:
 	max_health += increase
 	%HealthBar.max_value = max_health
 	health += increase
-	
+
 
 func change_firerate(scale) -> void:
 	pistol_firerate_timer.wait_time -= pistol_firerate_timer.wait_time * scale
@@ -94,4 +115,3 @@ func add_upgrade(upgrade) -> void:
 
 func _on_level_up_screen_apply_player_upgrade() -> void:
 	player_upgrades.apply_bullet_upgrade(self)
-	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbniwcw1ot0ps"]
+[gd_scene load_steps=15 format=3 uid="uid://bbniwcw1ot0ps"]
 
 [ext_resource type="Script" uid="uid://bmfomslo6ej1y" path="res://cyberooster.gd" id="1_8x83q"]
 [ext_resource type="PackedScene" uid="uid://bp0f3h2k4ihdt" path="res://player/player.tscn" id="1_tx5xb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Environment" uid="uid://bn5g7mc523iuw" path="res://util/glow.tres" id="6_pfh8x"]
 [ext_resource type="AudioStream" uid="uid://d13xcsykegynv" path="res://audio/background_music.wav" id="7_ukgty"]
 [ext_resource type="PackedScene" uid="uid://cjxhcvpcl00y0" path="res://objects/loot/xp_collector.tscn" id="11_46xs7"]
+[ext_resource type="PackedScene" uid="uid://jmmjifvrq3j2" path="res://objects/loot/rainbow_star.tscn" id="12_os4vh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pfh8x"]
 shader = ExtResource("2_oxwii")
@@ -230,6 +231,9 @@ environment = ExtResource("6_pfh8x")
 
 [node name="xpCollector" parent="." instance=ExtResource("11_46xs7")]
 position = Vector2(469, 168)
+
+[node name="RainbowStar" parent="." instance=ExtResource("12_os4vh")]
+position = Vector2(188, 232)
 
 [connection signal="game_won" from="." to="GameStates" method="_on_game_won"]
 [connection signal="pressed" from="GameStates/GameOver/RestartButton" to="GameStates" method="_on_restart_button_pressed"]
